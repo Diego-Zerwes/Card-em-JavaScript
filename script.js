@@ -41,7 +41,7 @@ listaDeProdutos.classList.add('lista-de-cards')
 function createHtmlCard(product){
   
   let container = document.createElement("div");
-  container.classList.add = "container";
+  container.classList.add("container");
   let h1 = document.createElement("h1");
   let h2 = document.createElement("h2");
   let h3 = document.createElement("h3");
@@ -103,5 +103,15 @@ let listaProdutos = [produto,produto2,produto3];
 
 localStorage.setItem("Produtos", JSON.stringify(listaProdutos))
 
+// const div = document.querySelector('.container')
+//   div.forEach(lop =>{
+    
+//   })
 
-
+const body = document.querySelector('body');
+const toggle = document.getElementById('toggle');
+toggle.onclick = function(){
+  toggle.classList.toggle('active');
+  body.classList.toggle('active');
+  // div.classList.toggle('active');
+}
