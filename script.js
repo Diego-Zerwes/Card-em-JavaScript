@@ -1,16 +1,3 @@
-const Produto = {
-  nome: "Smartphone XYZ",
-  preco: 999.99,
-  descricao: "Um smartphone poderoso com camera de alta resolução e processador rápido",
-  imagem: "facul/Xiaomi.jpg",
-  disponivel: true,
-  avaliacao: 4.5,
-  caracteristica: ["Tela de 6 polegadas", "Memoria de 128GB", "Camera principal de 48MP"],
-  tags: ["tecnologia", "Smartphone", "Eletronicos"],
-  desconto: "10%"
-}
-
-
 function product(nome,preco,descricao,imagem,disponivel,avaliacao,caracteristica,tags,desconto){
   this.nome = nome;
   this.preco = preco;
@@ -33,7 +20,7 @@ function product(nome,preco,descricao,imagem,disponivel,avaliacao,caracteristica
 }
 
 let produto = new product("Smartphone XYZ", 999.99, "Um smartphone poderoso com camera de alta resolução e processador rápido", "facul/Xiaomi.jpg", true, 4.5, ["Tela de 6 polegadas", "Memoria de 128GB", "Camera principal de 48MP"], ["tecnologia", " Smartphone", " Eletronicos"], 10);
-let produto2 = new product("Smartphone XYZ", 999.99, "Um smartphone poderoso com camera de alta resolução e processador rápido", "facul/Xiaomi.jpg", false, 4.5, ["Tela de 6 polegadas", "Memoria de 128GB", "Camera principal de 48MP"], ["tecnologia", " Smartphone", " Eletronicos"], 10);
+let produto2 = new product("Smartphone XYZ", 999.99, "Um smartphone poderoso com camera de alta resolução e processador rápido", "facul/Xiaomi.jpg", false, 4.5, ["Tela de 6 polegadas", "Memoria de 128GB", "Camera principal de 48MP"], ["tecnologia", " Smartphone", " Eletronicos"], 20);
 let produto3 = new product("Smartphone XYZ", 999.99, "Um smartphone poderoso com camera de alta resolução e processador rápido", "facul/Xiaomi.jpg", true, 4.5, ["Tela de 6 polegadas", "Memoria de 128GB", "Camera principal de 48MP"], ["tecnologia", " Smartphone", "Eletronicos"], 15);
 let listaDeProdutos = document.createElement("div")
 listaDeProdutos.classList.add('lista-de-cards')
@@ -103,15 +90,28 @@ let listaProdutos = [produto,produto2,produto3];
 
 localStorage.setItem("Produtos", JSON.stringify(listaProdutos))
 
-// const div = document.querySelector('.container')
-//   div.forEach(lop =>{
-    
-//   })
-
 const body = document.querySelector('body');
 const toggle = document.getElementById('toggle');
-toggle.onclick = function(){
+function setTheme() {
+  const currentTheme = body.classList.contains('active') ? 'active' : 'inactive';
+  localStorage.setItem('theme', currentTheme);
+}
+
+function loadTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'active') {
+    body.classList.add('active');
+    toggle.classList.add('active');
+  } else {
+    body.classList.remove('active');
+    toggle.classList.remove('active');
+  }
+}
+
+toggle.onclick = function() {
   toggle.classList.toggle('active');
   body.classList.toggle('active');
-  // div.classList.toggle('active');
+  setTheme();
 }
+
+loadTheme();
