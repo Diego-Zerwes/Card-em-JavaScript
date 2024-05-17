@@ -1,3 +1,5 @@
+
+
 * {
   margin: 0;
   padding: 0;
@@ -5,13 +7,29 @@
 
 body {
   display: flex;
+  width: 100%;
   justify-content: center;
-  flex-direction: row;
+  
+  
 }
-#container {
+/* .container {
   width: 15%;
+  
+} */
+.lista-de-cards{
+  width: 80%;
+  display: flex;
+  flex-direction: row;
   height: auto;
-  background: #f4f4f4;
+  margin: 0 auto;
+  border-radius: 5px;
+  
+  margin-top: 10px;
+  margin-right: 200px;
+  
+}
+.lista-de-cards div{
+  margin-right: 100px;
   border-radius: 5px;
   border: 0.1px solid ;
   margin-top: 100px;
@@ -62,3 +80,16 @@ span {
 img {
   width: 100%;
 }
+
+#toggle {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+}
+.circulo{
+background: lightblue;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+

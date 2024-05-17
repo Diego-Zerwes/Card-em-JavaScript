@@ -35,11 +35,13 @@ function product(nome,preco,descricao,imagem,disponivel,avaliacao,caracteristica
 let produto = new product("Smartphone XYZ", 999.99, "Um smartphone poderoso com camera de alta resolução e processador rápido", "facul/Xiaomi.jpg", true, 4.5, ["Tela de 6 polegadas", "Memoria de 128GB", "Camera principal de 48MP"], ["tecnologia", " Smartphone", " Eletronicos"], 10);
 let produto2 = new product("Smartphone XYZ", 999.99, "Um smartphone poderoso com camera de alta resolução e processador rápido", "facul/Xiaomi.jpg", false, 4.5, ["Tela de 6 polegadas", "Memoria de 128GB", "Camera principal de 48MP"], ["tecnologia", " Smartphone", " Eletronicos"], 10);
 let produto3 = new product("Smartphone XYZ", 999.99, "Um smartphone poderoso com camera de alta resolução e processador rápido", "facul/Xiaomi.jpg", true, 4.5, ["Tela de 6 polegadas", "Memoria de 128GB", "Camera principal de 48MP"], ["tecnologia", " Smartphone", "Eletronicos"], 15);
-
+let listaDeProdutos = document.createElement("div")
+listaDeProdutos.classList.add('lista-de-cards')
 
 function createHtmlCard(product){
+  
   let container = document.createElement("div");
-  container.id = "container";
+  container.classList.add = "container";
   let h1 = document.createElement("h1");
   let h2 = document.createElement("h2");
   let h3 = document.createElement("h3");
@@ -59,28 +61,47 @@ function createHtmlCard(product){
   container.appendChild(p2);
   container.appendChild(p3);
   container.appendChild(span);
-  h1.appendChild(document.createTextNode(this.nome));
-  h2.appendChild(document.createTextNode(this.descricao));
-  h3.appendChild(document.createTextNode(this.disponivel ? "Disponivel" : "Indisponivel"));
+  h1.appendChild(document.createTextNode(product.nome));
+  h2.appendChild(document.createTextNode(product.descricao));
+  h3.appendChild(document.createTextNode(product.disponivel ? "Disponivel" : "Indisponivel"));
   img.src = "/Xiaomi.jpg";
- if(typeof this.tags !== 'number'){
+ if(typeof product.tags !== 'number'){
   console.error("é um numero");
  }
-  p.appendChild(document.createTextNode(this.tags));
-  p2.appendChild(document.createTextNode(this.caracteristica));
-  this.aplicaDesconto();
-  p3.appendChild(document.createTextNode(`R$ ${this.preco.toFixed(2)}`));
-  if(this.desconto > 0){
-    this.desconto = `  Desconto ${this.desconto}%`;
+  p.appendChild(document.createTextNode(product.tags));
+  p2.appendChild(document.createTextNode(product.caracteristica));
+  product.aplicaDesconto();
+  p3.appendChild(document.createTextNode(`R$ ${product.preco.toFixed(2)}`));
+  if(product.desconto > 0){
+    product.desconto = `  Desconto ${product.desconto}%`;
   }
-  span.appendChild(document.createTextNode(this.desconto));
 
-  document.body.appendChild(container);
- 
+  span.appendChild(document.createTextNode(product.desconto));
+  listaDeProdutos.appendChild(container);
+}
+document.body.appendChild(listaDeProdutos);
+
+let arrayCards = [];
+
+  arrayCards.push(produto,produto2,produto3)
+
+  function gerarCardList(array){
+    array.forEach(card => {
+      return createHtmlCard(card)
+    })
+  }
+  gerarCardList(arrayCards);
+function insertProdutoCard(array){
+  let ul = document.querySelector(".lista-de-cards")
+  console.log(array)
+  
+    gerarCardList(array)
+   
 }
 
-// createHtmlCard(product);
-createHtmlCard.call(produto);
-createHtmlCard.call(produto2);
-createHtmlCard.call(produto3);
+let listaProdutos = [produto,produto2,produto3];
+
+localStorage.setItem("Produtos", JSON.stringify(listaProdutos))
+
+
 
